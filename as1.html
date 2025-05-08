@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table Row Manager</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Table Example</h2>
+
+<table id="dataTable">
+    <thead>
+        <tr>
+            <th>Row Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td></tr>
+        <tr><td>2</td></tr>
+        <tr><td>3</td></tr>
+        <tr><td>4</td></tr>
+        <tr><td>5</td></tr>
+    </tbody>
+</table>
+
+<br>
+
+<button onclick="addRow()">Add Row</button>
+<button onclick="deleteRow()">Delete Row</button>
+
+<p id="messageLabel">Message:</p>
+
+<script>
+    const table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+    const messageLabel = document.getElementById('messageLabel');
+
+    function updateMessage() {
+        if (table.rows.length === 0) {
+            messageLabel.textContent = "Message: No more rows to delete";
+        } else {
+            messageLabel.textContent = "Message:";
+        }
+    }
+
+    function addRow() {
+        const rowCount = table.rows.length;
+        const newRow = table.insertRow();
+        const cell = newRow.insertCell(0);
+        cell.textContent = rowCount + 1;
+        updateMessage();
+    }
+
+    function deleteRow() {
+        if (table.rows.length > 0) {
+            table.deleteRow(0);
+        }
+        updateMessage();
+    }
+</script>
+
+</body>
+</html>
